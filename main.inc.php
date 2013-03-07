@@ -70,6 +70,10 @@ else
   add_event_handler('blockmanager_apply', 'skeleton_blockmanager_apply2');
   // NOTE: skeleton_blockmanager_apply1() and skeleton_blockmanager_apply2() can (should) be merged
   
+  // add button on album and photos pages
+  add_event_handler('loc_end_index', 'skeleton_add_button');
+  add_event_handler('loc_end_picture', 'skeleton_add_button');
+  
   // prefilter on photo page
   add_event_handler('loc_end_picture', 'skeleton_loc_end_picture');
   

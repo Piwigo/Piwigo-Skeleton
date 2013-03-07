@@ -1,0 +1,17 @@
+.showInfo {
+  position:static;
+  display:inline-block;
+  padding:1px 6px;
+  width:4px;
+  height:14px;
+  line-height:14px;
+  font-size:0.8em;
+}
+
+.square-list {
+  list-style:square !important;
+  margin-left:35px !important;
+}
+  .square-list li {
+    margin-bottom:0 !important;
+  }

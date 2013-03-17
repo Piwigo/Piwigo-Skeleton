@@ -5,6 +5,7 @@ defined('SKELETON_PATH') or die('Hacking attempt!');
 // | Photo[Skeleton] tab                                                   |
 // +-----------------------------------------------------------------------+
 
+$page['active_menu'] = get_active_menu('photo'); // force oppening "Photos" menu block
 
 /* Basic checks */
 check_status(ACCESS_ADMINISTRATOR);

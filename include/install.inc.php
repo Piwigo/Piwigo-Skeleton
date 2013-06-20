@@ -20,18 +20,25 @@ function skeleton_install()
   // add config parameter
   if (empty($conf['skeleton']))
   {
-    $skeleton_default_config = serialize(array(
+    $conf['skeleton'] = serialize(array(
       'option1' => 10,
       'option2' => true,
       ));
   
-    conf_update_param('skeleton', $skeleton_default_config);
-    $conf['skeleton'] = $skeleton_default_config;
+    conf_update_param('skeleton', $conf['skeleton']);
   }
   else
   {
     // if you need to test the "old" configuration you must check if not yet unserialized
     $old_conf = is_string($conf['skeleton']) ? unserialize($conf['skeleton']) : $conf['skeleton'];
+    
+    if (empty($old_conf['option3']))
+    {
+      $old_conf['option3'] = 'two';
+    }
+    
+    $conf['skeleton'] = serialize($old_conf);
+    conf_update_param('skeleton', $conf['skeleton']);
   }
   
   // add a new table

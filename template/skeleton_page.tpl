@@ -45,6 +45,6 @@ $("#test").click(function() {
 <div id="test">Click for fun</div>
 
 
-{if $clear}<div style="clear: both;"></div>
+{if isset($clear)}<div style="clear: both;"></div>
 </div>{/if}
 </div>{* <!-- content --> *}

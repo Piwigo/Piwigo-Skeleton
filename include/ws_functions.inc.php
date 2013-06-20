@@ -9,7 +9,8 @@ function skeleton_ws_add_methods($arr)
     'pwg.PHPinfo',
     'ws_php_info',
     array(
-      'what' => array('default'=> 'INFO_ALL'),
+      'what' => array('default'=>'INFO_ALL', 'info'=>'This parameter has a default value'),
+      'ids' => array('flags'=>WS_PARAM_FORCE_ARRAY, 'info'=>'This one must be an array'),
       ),
     'Returns phpinfo (don\'t use XML request format)'
     );

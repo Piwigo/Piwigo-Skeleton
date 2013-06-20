@@ -1,5 +1,9 @@
 {combine_css path=$SKELETON_PATH|@cat:"admin/template/style.css"}
 
+{html_style}{literal}
+h4 { text-align:left !important; }
+{/literal}{/html_style}
+
 <div class="titrePage">
 	<h2>Skeleton</h2>
 </div>

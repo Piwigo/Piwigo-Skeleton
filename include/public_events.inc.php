@@ -16,15 +16,9 @@ function skeleton_loc_end_section_init()
     $page['section_title'] = '<a href="'.get_absolute_root_url().'">'.l10n('Home').'</a>'.$conf['level_separator'].'<a href="'.SKELETON_PUBLIC.'">'.l10n('Skeleton').'</a>';
     $page['title'] = l10n('Skeleton');
     
-    // define body_id
-    add_event_handler('loc_begin_page_header', 'skeleton_loc_begin_page_header');
+    $page['body_id'] = 'theSkeletonPage';
+    $page['is_external'] = true; // inform Piwigo that you are on a new page
   }
-}
-
-function skeleton_loc_begin_page_header()
-{
-  global $page;
-  $page['body_id'] = 'theSkeletonPage';
 }
 
 /**

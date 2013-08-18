@@ -56,69 +56,6 @@ function skeleton_add_button()
 }
 
 /**
- * add link in existing menu
- */
-function skeleton_blockmanager_apply1($menu_ref_arr)
-{
-  $menu = &$menu_ref_arr[0];  
-  
-  if ( ($block = $menu->get_block('mbMenu')) != null )
-  {
-    array_push($block->data, array(
-      'URL' => SKELETON_PUBLIC,
-      'TITLE' => l10n('Skeleton'),
-      'NAME' => l10n('Skeleton'),
-    ));
-  }
-}
-
-/**
- * add a nbew menu block
- */
-function skeleton_blockmanager_register_blocks($menu_ref_arr)
-{
-  $menu = &$menu_ref_arr[0];
-  
-  if ($menu->get_id() == 'menubar')
-  {
-    $menu->register_block(new RegisteredBlock('mbSkeleton', l10n('Skeleton'), 'skeleton'));
-  }
-}
-
-/**
- * fill the added menu block
- */
-function skeleton_blockmanager_apply2($menu_ref_arr)
-{
-  $menu = &$menu_ref_arr[0];
-  
-  if ( ($block = $menu->get_block('mbSkeleton')) != null )
-  {
-    global $template;
-    
-    $block->set_title(l10n('Skeleton'));
-    
-    $block->data['link1'] =
-      array(
-        'URL' => get_absolute_root_url(),
-        'TITLE' => l10n('First link'),
-        'NAME' => l10n('Link 1'),
-        'REL'=> 'rel="nofollow"',
-      );
-
-    $block->data['link2'] =
-      array(
-        'URL' => SKELETON_PUBLIC,
-        'TITLE' => l10n('Second link'),
-        'NAME' => l10n('Link 2'),
-      );
-    
-    $template->set_template_dir(SKELETON_PATH . 'template/');
-    $block->template = 'menubar_skeleton.tpl';
-  }
-}
-
-/**
  * add a prefilter on photo page
  */
 function skeleton_loc_end_picture()
@@ -139,6 +76,3 @@ function skeleton_picture_prefilter($content)
 
   return str_replace($search, $replace, $content);
 }
-  
-
-?>

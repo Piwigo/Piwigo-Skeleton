@@ -18,6 +18,7 @@
   -moz-transform:rotate(5deg);
   -webkit-transform:rotate(5deg);
   -o-transform:rotate(5deg);
+  transform:rotate(5deg);
   letter-spacing:10px;
   box-shadow:10px 10px 10px rgba(0,0,0,0.5);
   cursor:pointer;
@@ -26,4 +27,5 @@
   -moz-transform:rotate(175deg);
   -webkit-transform:rotate(175deg);
   -o-transform:rotate(175deg);
+  transform:rotate(175deg);
 }

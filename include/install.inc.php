@@ -65,5 +65,3 @@ CREATE TABLE IF NOT EXISTS `'. $prefixeTable .'skeleton` (
   }
 
 }
-
-?>

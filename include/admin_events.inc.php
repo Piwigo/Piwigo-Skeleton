@@ -93,5 +93,3 @@ function skeleton_element_set_global_action($action, $collection)
     }
   }
 }
-
-?>

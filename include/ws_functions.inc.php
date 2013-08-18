@@ -25,6 +25,3 @@ function ws_php_info($params, &$service)
   
   return phpinfo(constant($params['what']));
 }
-
-
-?>

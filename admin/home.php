@@ -13,5 +13,3 @@ $template->assign(array(
 
 // define template file
 $template->set_filename('skeleton_content', realpath(SKELETON_PATH . 'admin/template/home.tpl'));
-
-?>

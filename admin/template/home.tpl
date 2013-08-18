@@ -10,7 +10,7 @@ h4 { text-align:left !important; }
 
 <form method="post" action="" class="properties">
 <fieldset>
-  <legend>{'What Skeleton can do for me?'|@translate}</legend>
+  <legend>{'What Skeleton can do for me?'|translate}</legend>
   
   {$INTRO_CONTENT}
 </fieldset>

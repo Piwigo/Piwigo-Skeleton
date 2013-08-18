@@ -69,5 +69,3 @@ function plugin_uninstall()
   }
   rmdir($dir);
 }
-
-?>

@@ -31,12 +31,10 @@ include(SKELETON_PATH . 'admin/' . $page['tab'] . '.php');
 
 // template vars
 $template->assign(array(
-  'SKELETON_PATH'=> get_root_url() . SKELETON_PATH, // used for images, scripts, ... access
+  'SKELETON_PATH'=> SKELETON_PATH, // used for images, scripts, ... access
   'SKELETON_ABS_PATH'=> realpath(SKELETON_PATH),    // used for template inclusion (Smarty needs a real path)
   'SKELETON_ADMIN' => SKELETON_ADMIN,
   ));
   
 // send page content
 $template->assign_var_from_handle('ADMIN_CONTENT', 'skeleton_content');
-
-?>

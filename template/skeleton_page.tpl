@@ -19,9 +19,9 @@ $("#test").click(function() {
 {/literal}{/footer_script}
 
 {* <!-- add page content here --> *}
-<h1>{'What Skeleton can do for me?'|@translate}</h1>
+<h1>{'What Skeleton can do for me?'|translate}</h1>
 <blockquote>
   {$INTRO_CONTENT}
 </blockquote>
 
-<div id="test">Click for fun</div>
+<div id="test">{'Click for fun'|translate}</div>

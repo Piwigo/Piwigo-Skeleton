@@ -46,5 +46,3 @@ $template->assign(array(
 ));
 
 $template->set_filename('skeleton_content', realpath(SKELETON_PATH . 'admin/template/photo.tpl'));
-
-?>

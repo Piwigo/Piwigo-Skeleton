@@ -49,23 +49,5 @@ function plugin_unactivate()
  */
 function plugin_uninstall() 
 {
-  global $prefixeTable;
-  
-  // delete configuration
-  pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "skeleton" LIMIT 1;');
-  
-  // delete table
-  pwg_query('DROP TABLE `'. $prefixeTable .'skeleton`;');
-  
-  // delete field
-  pwg_query('ALTER TABLE `'. IMAGES_TABLE .'` DROP `skeleton`;');
-  
-  // delete local folder
-  $dir = PHPWG_ROOT_PATH . PWG_LOCAL_DIR . 'skeleton/';
-  foreach (scandir($dir) as $file)
-  {
-    if ($file == '.' or $file == '..') continue;
-    unlink($dir.$file);
-  }
-  rmdir($dir);
+  skeleton_uninstall();
 }

@@ -65,3 +65,27 @@ CREATE TABLE IF NOT EXISTS `'. $prefixeTable .'skeleton` (
   }
 
 }
+
+function skeleton_uninstall()
+{
+  global $prefixeTable, $conf;
+  
+  // delete configuration
+  pwg_query('DELETE FROM `'. CONFIG_TABLE .'` WHERE param = "skeleton";');
+  unset($conf['skeleton']);
+  
+  // delete table
+  pwg_query('DROP TABLE `'. $prefixeTable .'skeleton`;');
+  
+  // delete field
+  pwg_query('ALTER TABLE `'. IMAGES_TABLE .'` DROP `skeleton`;');
+  
+  // delete local folder
+  $dir = PHPWG_ROOT_PATH . PWG_LOCAL_DIR . 'skeleton/';
+  foreach (scandir($dir) as $file)
+  {
+    if ($file == '.' or $file == '..') continue;
+    unlink($dir.$file);
+  }
+  rmdir($dir);
+}

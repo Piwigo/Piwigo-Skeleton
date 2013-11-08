@@ -22,7 +22,7 @@ global $prefixeTable;
 // +-----------------------------------------------------------------------+
 // | Define plugin constants                                               |
 // +-----------------------------------------------------------------------+
-defined('SKELETON_ID') or define('SKELETON_ID', basename(dirname(__FILE__)));
+define('SKELETON_ID',      basename(dirname(__FILE__)));
 define('SKELETON_PATH' ,   PHPWG_PLUGINS_PATH . SKELETON_ID . '/');
 define('SKELETON_TABLE',   $prefixeTable . 'skeleton');
 define('SKELETON_ADMIN',   get_root_url() . 'admin.php?page=plugin-' . SKELETON_ID);
@@ -105,7 +105,6 @@ include_once(SKELETON_PATH . 'include/ws_functions.inc.php');
 
 
 
-
 /**
  * plugin initialization
  *   - check for upgrades
@@ -114,11 +113,12 @@ include_once(SKELETON_PATH . 'include/ws_functions.inc.php');
  */
 function skeleton_init()
 {
-  global $conf, $pwg_loaded_plugins;
+  global $conf;
   
   // apply upgrade if needed
-  include_once(SKELETON_PATH . 'include/install.inc.php');
-  request_plugin_update(SKELETON_ID, SKELETON_VERSION, 'skeleton_install');
+  include_once(SKELETON_PATH . 'maintain.inc.php');
+  $maintain = new skeleton_maintain(SKELETON_ID);
+  $maintain->autoUpdate(SKELETON_VERSION, 'install');
   
   // load plugin language file
   load_language('plugin.lang', SKELETON_PATH);

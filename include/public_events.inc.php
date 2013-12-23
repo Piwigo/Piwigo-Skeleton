@@ -47,7 +47,7 @@ function skeleton_add_button()
   
   if (script_basename()=='index')
   {
-    $template->add_index_button('<li>'.$button.'</li>', EVENT_HANDLER_PRIORITY_NEUTRAL);
+    $template->add_index_button($button, EVENT_HANDLER_PRIORITY_NEUTRAL);
   }
   else
   {

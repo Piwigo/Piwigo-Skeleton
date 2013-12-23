@@ -6,10 +6,11 @@ defined('SKELETON_PATH') or die('Hacking attempt!');
  */
 function skeleton_admin_plugin_menu_links($menu) 
 {
-  array_push($menu, array(
+  $menu[] = array(
     'NAME' => l10n('Skeleton'),
     'URL' => SKELETON_ADMIN,
-  ));
+    );
+
   return $menu;
 }
 

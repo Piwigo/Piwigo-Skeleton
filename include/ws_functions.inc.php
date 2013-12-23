@@ -12,7 +12,9 @@ function skeleton_ws_add_methods($arr)
       'what' => array('default'=>'INFO_ALL', 'info'=>'This parameter has a default value'),
       'ids' => array('flags'=>WS_PARAM_FORCE_ARRAY, 'info'=>'This one must be an array'),
       ),
-    'Returns phpinfo (don\'t use XML request format)'
+    'Returns phpinfo (don\'t use XML request format)',
+    null,
+    array('hidden' => false) // you can hide your method from reflection.getMethodList method
     );
 }
 

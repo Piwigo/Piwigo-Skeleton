@@ -21,6 +21,12 @@ class skeleton_maintain extends PluginMaintain
    *    - use "IF NOT EXISTS" for table creation
    */
   private $installed = false;
+  
+  private $default_conf = array(
+    'option1' => 10,
+    'option2' => true,
+    'option3' => 'two',
+    );
 
   /**
    * plugin installation
@@ -36,12 +42,7 @@ class skeleton_maintain extends PluginMaintain
     // add config parameter
     if (empty($conf['skeleton']))
     {
-      $conf['skeleton'] = serialize(array(
-        'option1' => 10,
-        'option2' => true,
-        'option3' => 'two',
-        ));
-
+      $conf['skeleton'] = serialize($this->default_conf);
       conf_update_param('skeleton', $conf['skeleton']);
     }
     else

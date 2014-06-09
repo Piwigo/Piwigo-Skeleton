@@ -4,7 +4,7 @@ defined('SKELETON_PATH') or die('Hacking attempt!');
 /**
  * admin plugins menu link
  */
-function skeleton_admin_plugin_menu_links($menu) 
+function skeleton_admin_plugin_menu_links($menu)
 {
   $menu[] = array(
     'NAME' => l10n('Skeleton'),
@@ -26,7 +26,7 @@ function skeleton_tabsheet_before_select($sheets, $id)
       'url' => SKELETON_ADMIN.'-photo&amp;image_id='.$_GET['image_id'],
       );
   }
-  
+
   return $sheets;
 }
 
@@ -35,11 +35,12 @@ function skeleton_tabsheet_before_select($sheets, $id)
  */
 function skeleton_add_batch_manager_prefilters($prefilters)
 {
-	array_push($prefilters, array(
+  $prefilters[] = array(
     'ID' => 'skeleton',
     'NAME' => l10n('Skeleton'),
-  ));
-	return $prefilters;
+    );
+
+  return $prefilters;
 }
 
 /**
@@ -55,10 +56,10 @@ SELECT id
   ORDER BY RAND()
   LIMIT 20
 ;';
-    $filter_sets[] = array_from_query($query, 'id');
+    $filter_sets[] = query2array($query, null, 'id');
   }
-  
-	return $filter_sets;
+
+  return $filter_sets;
 }
 
 /**
@@ -66,12 +67,19 @@ SELECT id
  */
 function skeleton_loc_end_element_set_global()
 {
-	global $template;
-  
-	$template->append('element_set_global_plugins_actions', array(
-    'ID' => 'skeleton', 
-    'NAME' => l10n('Skeleton'), 
-    'CONTENT' => '<label><input type="checkbox" name="check_skeleton"> '.l10n('Check me!').'</label>', // this is optional
+  global $template;
+
+  /*
+    CONTENT is optional
+    for big contents it is advised to use a template file
+
+    $template->set_filename('skeleton_batchmanager_action', realpath(SKELETON_PATH.'template/batchmanager_action.tpl'));
+    $content = $template->parse('skeleton_batchmanager_action', true);
+   */
+  $template->append('element_set_global_plugins_actions', array(
+    'ID' => 'skeleton',
+    'NAME' => l10n('Skeleton'),
+    'CONTENT' => '<label><input type="checkbox" name="check_skeleton"> '.l10n('Check me!').'</label>',
     ));
 }
 
@@ -80,17 +88,17 @@ function skeleton_loc_end_element_set_global()
  */
 function skeleton_element_set_global_action($action, $collection)
 {
-	if ($action == 'skeleton')
+  global $page;
+
+  if ($action == 'skeleton')
   {
-    global $page;
-    
     if (empty($_POST['check_skeleton']))
     {
-      array_push($page['warnings'], l10n('Nothing appened, but you didn\'t check the box!'));
+      $page['warnings'][] = l10n('Nothing appened, but you didn\'t check the box!');
     }
     else
     {
-      array_push($page['infos'], l10n('Nothing appened, but you checked the box!'));
+      $page['infos'][] = l10n('Nothing appened, but you checked the box!');
     }
   }
 }

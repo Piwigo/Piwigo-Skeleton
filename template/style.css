@@ -1,4 +1,6 @@
-#test {
+/* CSS code for your plugin */
+
+#skeleton {
   width:400px;
   height:30px;
   margin:100px auto;
@@ -23,9 +25,15 @@
   box-shadow:10px 10px 10px rgba(0,0,0,0.5);
   cursor:pointer;
 }
-#test:hover {
-  -moz-transform:rotate(175deg);
-  -webkit-transform:rotate(175deg);
-  -o-transform:rotate(175deg);
-  transform:rotate(175deg);
+#skeleton:hover {
+  -moz-transform:rotate(-5deg);
+  -webkit-transform:rotate(-5deg);
+  -o-transform:rotate(-5deg);
+  transform:rotate(-5deg);
+}
+
+.skeleton-button {
+  background:url('head.png') center center no-repeat !important;
+  min-width:26px;
+  min-height:26px;
 }

@@ -34,6 +34,7 @@ SELECT *
 ;';
 $picture = pwg_db_fetch_assoc(pwg_query($query));
 
+
 # DO SOME STUFF HERE... or not !
 
 

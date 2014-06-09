@@ -1,6 +1,6 @@
 {combine_css path=$SKELETON_PATH|@cat:"admin/template/style.css"}
 
-{footer_script}{literal}
+{footer_script}
 jQuery('input[name="option2"]').change(function() {
   $('.option1').toggle();
 });
@@ -12,7 +12,8 @@ jQuery(".showInfo").tipTip({
   maxWidth: '300px',
   defaultPosition: 'bottom'
 });
-{/literal}{/footer_script}
+{/footer_script}
+
 
 <div class="titrePage">
 	<h2>Skeleton</h2>
@@ -21,7 +22,7 @@ jQuery(".showInfo").tipTip({
 <form method="post" action="" class="properties">
 <fieldset>
   <legend>{'Common configuration'|translate}</legend>
-  
+
   <ul>
     <li>
       <label>

@@ -13,9 +13,9 @@ if (isset($_POST['save_config']))
     'option2' => isset($_POST['option2']),
     'option3' => $_POST['option3'],
     );
-      
-  conf_update_param('skeleton', serialize($conf['skeleton']));
-  array_push($page['infos'], l10n('Information data registered in database'));
+
+  conf_update_param('skeleton', $conf['skeleton']);
+  $page['infos'][] = l10n('Information data registered in database');
 }
 
 $select_options = array(
@@ -23,7 +23,7 @@ $select_options = array(
   'two' => l10n('Two'),
   'three' => l10n('Three'),
   );
-  
+
 // send config to template
 $template->assign(array(
   'skeleton' => $conf['skeleton'],

@@ -2,13 +2,13 @@
 defined('SKELETON_PATH') or die('Hacking attempt!');
 
 /*
- * there is two ways to use class methods as event handlers:
+ * There is two ways to use class methods as event handlers:
  *
- **   add_event_handler('blockmanager_apply', array('SkeletonMenu', 'blockmanager_apply'));
+ * >  add_event_handler('blockmanager_apply', array('SkeletonMenu', 'blockmanager_apply'));
  *      in this case the method 'blockmanager_apply' must be a static method of the class 'SkeletonMenu'
  *
- **   $myObj = new SkeletonMenu();
- **   add_event_handler('blockmanager_apply', array(&$myObj, 'blockmanager_apply') );
+ * >  $myObj = new SkeletonMenu();
+ * >  add_event_handler('blockmanager_apply', array(&$myObj, 'blockmanager_apply'));
  *      in this case the method 'blockmanager_apply' must be a public method of the object '$myObj'
  */
 
@@ -19,15 +19,15 @@ class SkeletonMenu
    */
   static function blockmanager_apply1($menu_ref_arr)
   {
-    $menu = &$menu_ref_arr[0];  
-    
-    if ( ($block = $menu->get_block('mbMenu')) != null )
+    $menu = &$menu_ref_arr[0];
+
+    if (($block = $menu->get_block('mbMenu')) != null)
     {
-      array_push($block->data, array(
+      $block->data[] = array(
         'URL' => SKELETON_PUBLIC,
         'TITLE' => l10n('Skeleton'),
         'NAME' => l10n('Skeleton'),
-      ));
+        );
     }
   }
 
@@ -37,10 +37,11 @@ class SkeletonMenu
   static function blockmanager_register_blocks($menu_ref_arr)
   {
     $menu = &$menu_ref_arr[0];
-    
+
     if ($menu->get_id() == 'menubar')
     {
-      $menu->register_block(new RegisteredBlock('mbSkeleton', l10n('Skeleton'), 'skeleton'));
+      // identifier, title, owner
+      $menu->register_block(new RegisteredBlock('mbSkeleton', l10n('Skeleton'), 'Skeleton'));
     }
   }
 
@@ -50,13 +51,11 @@ class SkeletonMenu
   static function blockmanager_apply2($menu_ref_arr)
   {
     $menu = &$menu_ref_arr[0];
-    
-    if ( ($block = $menu->get_block('mbSkeleton')) != null )
+
+    if (($block = $menu->get_block('mbSkeleton')) != null)
     {
-      global $template;
-      
       $block->set_title(l10n('Skeleton'));
-      
+
       $block->data['link1'] =
         array(
           'URL' => get_absolute_root_url(),
@@ -71,7 +70,7 @@ class SkeletonMenu
           'TITLE' => l10n('Second link'),
           'NAME' => l10n('Link 2'),
         );
-      
+
       $block->template = realpath(SKELETON_PATH . 'template/menubar_skeleton.tpl');
     }
   }

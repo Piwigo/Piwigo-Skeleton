@@ -17,6 +17,18 @@ Author URI: http://www.strangeplanet.fr
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');
 
 
+if (basename(dirname(__FILE__)) != 'skeleton')
+{
+  add_event_handler('init', 'skeleton_error');
+  function skeleton_error()
+  {
+    global $page;
+    $page['errors'][] = 'Skeleton folder name is incorrect, uninstall the plugin and rename it to "skeleton"';
+  }
+  return;
+}
+
+
 // +-----------------------------------------------------------------------+
 // | Define plugin constants                                               |
 // +-----------------------------------------------------------------------+

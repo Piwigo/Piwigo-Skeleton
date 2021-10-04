@@ -6,6 +6,7 @@ Description: This is not a plugin. It's a skeleton for future plugins.
 Plugin URI: auto
 Author: Mistic
 Author URI: http://www.strangeplanet.fr
+Has Settings: true
 */
 
 /**

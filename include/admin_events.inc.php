@@ -2,19 +2,6 @@
 defined('SKELETON_PATH') or die('Hacking attempt!');
 
 /**
- * admin plugins menu link
- */
-function skeleton_admin_plugin_menu_links($menu)
-{
-  $menu[] = array(
-    'NAME' => l10n('Skeleton'),
-    'URL' => SKELETON_ADMIN,
-    );
-
-  return $menu;
-}
-
-/**
  * add a tab on photo properties page
  */
 function skeleton_tabsheet_before_select($sheets, $id)

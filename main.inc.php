@@ -58,10 +58,6 @@ if (defined('IN_ADMIN'))
   // file containing all admin handlers functions
   $admin_file = SKELETON_PATH . 'include/admin_events.inc.php';
 
-  // admin plugins menu link
-  add_event_handler('get_admin_plugin_menu_links', 'skeleton_admin_plugin_menu_links',
-    EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
-
   // new tab on photo page
   add_event_handler('tabsheet_before_select', 'skeleton_tabsheet_before_select',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);

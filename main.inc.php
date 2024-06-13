@@ -12,7 +12,7 @@ Has Settings: true
 /**
  * This is the main file of the plugin, called by Piwigo in "include/common.inc.php" line 137.
  * At this point of the code, Piwigo is not completely initialized, so nothing should be done directly
- * except define constants and event handlers (see http://piwigo.org/doc/doku.php?id=dev:plugins)
+ * except define constants and event handlers (see https://github.com/Piwigo/Piwigo/wiki#extension-coding-plugins--themes)
  */
 
 defined('PHPWG_ROOT_PATH') or die('Hacking attempt!');

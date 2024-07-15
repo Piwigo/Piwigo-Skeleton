@@ -74,6 +74,13 @@ CREATE TABLE IF NOT EXISTS `'. $this->table .'` (
       pwg_query('ALTER TABLE `' . IMAGES_TABLE . '` ADD `skeleton` TINYINT(1) NOT NULL DEFAULT 0;');
     }
 
+    // add a new column to existing table (for users modal)
+    $result = pwg_query('SHOW COLUMNS FROM `'.USER_INFOS_TABLE.'` LIKE "skeleton_notes";');
+    if (!pwg_db_num_rows($result))
+    {
+      pwg_query('ALTER TABLE `' . USER_INFOS_TABLE . '` ADD `skeleton_notes` VARCHAR(255) DEFAULT NULL;');
+    }
+
     // create a local directory
     if (!file_exists($this->dir))
     {
@@ -130,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `'. $this->table .'` (
 
     // delete field
     pwg_query('ALTER TABLE `'. IMAGES_TABLE .'` DROP `skeleton`;');
+    pwg_query('ALTER TABLE `'. USER_INFOS_TABLE .'` DROP `skeleton_notes`;');
 
     // delete local folder
     // use a recursive function if you plan to have nested directories

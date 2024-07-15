@@ -39,3 +39,58 @@ function ws_php_info($params, &$service)
 {
   return phpinfo(constant($params['what']));
 }
+
+// add method for users modal
+function skeleton_ws_users_getList($users){
+  $user_ids = array();
+  foreach ($users as $user_id => $user){
+    $user_ids[] = $user_id;
+  }
+  if (count($user_ids) == 0){
+    return $users;
+  }
+  $query = '
+    SELECT
+      user_id,
+      skeleton_notes
+    FROM '.USER_INFOS_TABLE.'
+      WHERE user_id IN ('.implode(',', $user_ids).')
+  ;';
+  $result = pwg_query($query);
+  while ($row = pwg_db_fetch_assoc($result)){
+    $users[$row['user_id']]['skeleton_notes'] = $row['skeleton_notes'];
+  }
+  return $users;
+}
+
+function skeleton_ws_users_setInfo($res, $methodName, $params){
+  if ($methodName != 'pwg.users.setInfo'){
+    return $res;
+  }
+  if (!isset($_POST['skeleton_notes'])){
+    return $res;
+  }
+  if (count($params['user_id']) == 0){
+    return $res;
+  }
+  
+  $updates = array();
+
+  foreach ($params['user_id'] as $user_id){
+    $updates[] = array(
+      'user_id' => $user_id,
+      'skeleton_notes' => $_POST['skeleton_notes'],
+    );
+  }
+  if (count($updates) > 0){
+    mass_updates(
+      USER_INFOS_TABLE,
+      array(
+        'primary' => array('user_id'),
+        'update'  => array('skeleton_notes')
+      ),
+      $updates
+    );
+  }
+  return $res;
+}

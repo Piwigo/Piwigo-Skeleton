@@ -73,6 +73,10 @@ if (defined('IN_ADMIN'))
     EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
   add_event_handler('element_set_global_action', 'skeleton_element_set_global_action',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
+
+  // new tab in users modal
+  add_event_handler('loc_end_admin', 'skeleton_add_tab_users_modal',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
 }
 else
 {
@@ -102,7 +106,10 @@ $ws_file = SKELETON_PATH . 'include/ws_functions.inc.php';
 // add API function
 add_event_handler('ws_add_methods', 'skeleton_ws_add_methods',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
-
+add_event_handler('ws_invoke_allowed', 'skeleton_ws_users_setInfo', 
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
+add_event_handler('ws_users_getList', 'skeleton_ws_users_getList',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 
 /*
  * event functions can also be wrapped in a class

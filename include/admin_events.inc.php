@@ -89,3 +89,20 @@ function skeleton_element_set_global_action($action, $collection)
     }
   }
 }
+
+/**
+ * add template for a tab in users modal
+ */
+function skeleton_add_tab_users_modal()
+{
+  global $page, $template;
+
+  if ('user_list' === $page['page'])
+  {
+    $template->set_filename('skeleton_notes', realpath(SKELETON_PATH.'template/notes.tpl'));
+    $template->assign(array(
+      'SKELETON_PATH' => SKELETON_PATH,
+    ));
+    $template->parse('skeleton_notes');
+  }
+}

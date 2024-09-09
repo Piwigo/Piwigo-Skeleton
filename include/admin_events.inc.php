@@ -106,3 +106,22 @@ function skeleton_add_tab_users_modal()
     $template->parse('skeleton_notes');
   }
 }
+
+/**
+ * add a prefilter on batch manager unit
+ * 
+ * PLUGINS_BATCH_MANAGER_UNIT_ELEMENT_SUBTEMPLATE is the hook for your HTML injection in the batch manager unit mode page
+ * 
+ * If your data is located within the piwigo_images table in the database it will be loaded by default with the template and doesn't need to be pre-assigned here
+ * You can directly use it by calling $element.[dataName] in your template
+ */
+function skeleton_loc_end_element_set_unit()
+{
+    global $template, $page;
+    
+    $template->assign(array(
+        'SKELETON_PATH' => SKELETON_PATH,
+    ));
+    $template->append('PLUGINS_BATCH_MANAGER_UNIT_ELEMENT_SUBTEMPLATE', 'plugins/skeleton/template/batch_manager_unit.tpl');
+}
+

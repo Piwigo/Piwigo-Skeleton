@@ -74,6 +74,10 @@ if (defined('IN_ADMIN'))
   add_event_handler('element_set_global_action', 'skeleton_element_set_global_action',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
 
+  // new field in Batch Manager unit mode
+  add_event_handler('loc_end_element_set_unit', 'skeleton_loc_end_element_set_unit',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
+
   // new tab in users modal
   add_event_handler('loc_end_admin', 'skeleton_add_tab_users_modal',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $admin_file);
@@ -109,6 +113,10 @@ add_event_handler('ws_add_methods', 'skeleton_ws_add_methods',
 add_event_handler('ws_invoke_allowed', 'skeleton_ws_users_setInfo', 
     EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 add_event_handler('ws_users_getList', 'skeleton_ws_users_getList',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
+add_event_handler('ws_setInfo', 'skeleton_ws_setInfo',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
+add_event_handler('ws_invoke_allowed', 'skeleton_ws_images_setInfo',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 
 /*

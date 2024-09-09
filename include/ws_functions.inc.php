@@ -33,6 +33,28 @@ function skeleton_ws_add_methods($arr)
       'post_only' => false, // you can disallow GET resquests for this method
       )
     );
+
+    //skeleton.setInfo method registration
+    $service->addMethod(
+      'skeleton.setInfo',
+      'skeleton_ws_setInfo',
+      array(
+        'image_id' => array(
+          'type' => WS_TYPE_INT | WS_TYPE_POSITIVE | WS_TYPE_NOTNULL,
+        ),
+        'skeleton' => array(
+          'type' => WS_TYPE_INT | WS_TYPE_NOTNULL,
+          'info' => 'Value to set for the skeleton field, should be 0 or 1',
+        ),
+      ),
+      'Update the skeleton field in the piwigo_images table',
+      null,
+      array(
+        'hidden' => false,
+        'admin_only' => true,
+        'post_only' => true,
+      )
+    );
 }
 
 function ws_php_info($params, &$service)
@@ -93,4 +115,63 @@ function skeleton_ws_users_setInfo($res, $methodName, $params){
     );
   }
   return $res;
+}
+
+// this function hooks to pwg.images.setInfo calls which contains skeleton data
+// which allows to process additional data in a single HTTP request
+function skeleton_ws_images_setInfo($res, $methodName, $params) {
+  if ($methodName != 'pwg.images.setInfo') {
+    return $res;
+  }
+  if (!isset($_POST['skeleton'])) {
+    return $res;
+  }
+  if (empty($params['image_id'])) {
+    return $res;
+  }
+  
+  $image_id = $params['image_id'];
+  $update = array(
+    array(
+      'id' => $image_id,
+      'skeleton' => $_POST['skeleton'],
+    )
+  );
+  mass_updates(
+    IMAGES_TABLE,
+    array(
+      'primary' => array('id'),
+      'update'  => array('skeleton')
+    ),
+    $update
+  );
+  return $res;
+}
+
+// function called by the API method skeleton.setInfo
+function skeleton_ws_setInfo($params, &$service)
+{
+  if (!isset($params['image_id']) || !isset($params['skeleton'])) {
+    return new PwgError(WS_ERR_INVALID_PARAM, 'Both image_id and skeleton value are required parameters.');
+  }
+
+  $image_id = intval($params['image_id']);
+  $skeleton_value = intval($params['skeleton']);
+
+  if ($skeleton_value !== 0 && $skeleton_value !== 1) {
+    return new PwgError(WS_ERR_INVALID_PARAM, 'Invalid skeleton value. Must be 0 or 1.');
+  }
+
+  $query = '
+    UPDATE '.IMAGES_TABLE.'
+    SET skeleton = '.$skeleton_value.'
+    WHERE id = '.$image_id.'
+  ;';
+
+  pwg_query($query);
+
+  return array(
+    'status' => 'success',
+    'message' => 'Skeleton field updated successfully for picture ' . $image_id,
+  );
 }

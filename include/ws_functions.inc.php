@@ -1,6 +1,8 @@
 <?php
 defined('SKELETON_PATH') or die('Hacking attempt!');
 
+include_once(SKELETON_PATH . 'include/functions.inc.php');
+
 function skeleton_ws_add_methods($arr)
 {
   $service = &$arr[0];
@@ -174,4 +176,24 @@ function skeleton_ws_setInfo($params, &$service)
     'status' => 'success',
     'message' => 'Skeleton field updated successfully for picture ' . $image_id,
   );
+}
+
+function skeleton_ws_users_setMyInfo($res, $methodName, $params)
+{
+  if ($methodName != 'pwg.users.setMyInfo'){
+    return $res;
+  }
+
+  if (empty($params['pwg_token'])) {
+    return $res;
+  }
+
+  $result = save_generic_profile($_POST);
+
+  if (!$result['success'])
+  {
+    return new PwgError(WS_ERR_INVALID_PARAM, $result['message']);
+  }
+
+  return $res;
 }

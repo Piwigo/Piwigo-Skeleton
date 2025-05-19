@@ -77,3 +77,45 @@ function skeleton_picture_prefilter($content)
 
   return str_replace($search, $replace.$search, $content);
 }
+
+/**
+ * add a block in profile page
+ */
+function skeleton_add_profile_block()
+{
+  global $template;
+
+  $block = array(
+    'name' => 'Profile Skeleton',
+    'desc' => 'This is the simplest example to add block in plugin',
+    'template' => 'plugins/' . SKELETON_ID . '/template/skeleton_profile_block.tpl',
+    'standard_show_save' => true
+  );
+  $template->append('PLUGINS_PROFILE', $block);
+}
+
+/**
+ * save data in the theme profile page
+ */
+function skeleton_profile_save($user_id)
+{
+  unset($_POST['mail_address']);
+  unset($_POST['password']);
+  unset($_POST['use_new_pwd']);
+  unset($_POST['passwordConf']);
+  unset($_POST['nb_image_page']);
+  unset($_POST['theme']);
+  unset($_POST['language']);
+  unset($_POST['recent_period']);
+  unset($_POST['expand']);
+  unset($_POST['show_nb_comments']);
+  unset($_POST['show_nb_hits']);
+  unset($_POST['pwg_token']);
+
+  echo '<pre>';
+  echo print_r('POST FROM SKELETON PLUGIN <br />');
+  echo print_r(save_generic_profile($_POST));
+  echo print_r($_POST);
+  echo '</pre>';
+  exit;
+}

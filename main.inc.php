@@ -102,6 +102,14 @@ else
   // prefilter on photo page
   add_event_handler('loc_end_picture', 'skeleton_loc_end_picture',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $public_file);
+
+  // profile add template block
+  add_event_handler('load_profile_in_template', 'skeleton_add_profile_block',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $public_file);
+
+  // save profile data
+  add_event_handler('save_profile_from_post', 'skeleton_profile_save',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $public_file);
 }
 
 // file containing API function
@@ -117,6 +125,8 @@ add_event_handler('ws_users_getList', 'skeleton_ws_users_getList',
 add_event_handler('ws_setInfo', 'skeleton_ws_setInfo',
     EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 add_event_handler('ws_invoke_allowed', 'skeleton_ws_images_setInfo',
+    EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
+add_event_handler('ws_invoke_allowed', 'skeleton_ws_users_setMyInfo', 
     EVENT_HANDLER_PRIORITY_NEUTRAL, $ws_file);
 
 /*

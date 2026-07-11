@@ -12,5 +12,6 @@ $lang['Check me!'] = 'Check me!';
 $lang['Nothing appened, but you didn\'t check the box!'] = 'Nothing appened, but you didn\'t check the box!';
 $lang['Nothing appened, but you checked the box!'] = 'Nothing appened, but you checked the box!';
 $lang['Common configuration'] = 'Common configuration';
+$lang['Secondary configuration'] = 'Secondary configuration';
 
 ?>

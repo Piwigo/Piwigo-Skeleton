@@ -12,5 +12,6 @@ $lang['Check me!'] = 'Cliquez-moi !';
 $lang['Nothing appened, but you didn\'t check the box!'] = 'Rien ne s\'est passé, mais vous n\'avez pas coché la case !';
 $lang['Nothing appened, but you checked the box!'] = 'Rien ne s\'est passé, mais vous avez coché la case !';
 $lang['Common configuration'] = 'Configuration commune';
+$lang['Secondary configuration'] = 'Configuration secondaire';
 
 ?>

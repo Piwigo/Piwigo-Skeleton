@@ -34,6 +34,7 @@ $template->assign(array(
   'SKELETON_PATH'=> SKELETON_PATH, // used for images, scripts, ... access
   'SKELETON_ABS_PATH'=> realpath(SKELETON_PATH), // used for template inclusion (Smarty needs a real path)
   'SKELETON_ADMIN' => SKELETON_ADMIN,
+  'ADMIN_PAGE_TITLE' => 'Skeleton',
   ));
 
 // send page content

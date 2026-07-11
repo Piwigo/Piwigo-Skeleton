@@ -5,14 +5,6 @@
 jQuery('input[name="option2"]').change(function() {
   $('.option1').toggle();
 });
-
-jQuery(".showInfo").tipTip({
-  delay: 0,
-  fadeIn: 200,
-  fadeOut: 200,
-  maxWidth: '300px',
-  defaultPosition: 'bottom'
-});
 {/footer_script}
 
 
